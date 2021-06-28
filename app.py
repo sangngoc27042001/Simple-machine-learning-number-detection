@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import guessing_number
+
 
 Score_alphabet =0
 BScore_alphabet =0
@@ -11,7 +11,7 @@ def home():
 	return render_template('number.html')
 
 
-
+#import guessing_number
 # @app.route('/send', methods=['GET', 'POST'])
 # def send():
 # 	global Score_alphabet
