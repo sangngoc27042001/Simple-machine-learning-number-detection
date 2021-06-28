@@ -2,6 +2,7 @@ import pickle
 import cv2
 import numpy as np
 
+
 __model1 = None
 __model2 = None
 __model3 = None
@@ -9,9 +10,9 @@ __model4 = None
 
 
 def return_result(x):
-    max = 0;
+    max = 0
     for i in range(0, 4):
-        count = 0;
+        count = 0
         for j in range(0, 4):
             if (x[i] == x[j]):
                 count = count + 1
