@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Number Detection
+    </title>
+
+    <style>
+        body {
+
+            background-image:url("https://images.unsplash.com/photo-1502570149819-b2260483d302?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80");
+            background-position: top;
+            background-size: 1200px;
+            text-align: center;
+            align-items: center;
+            align-content: center;
+        }
+
+
+        #content{
+            width: 400px;
+            height: 400px;
+            margin:0 auto;
+            border:3px solid whitesmoke;
+            margin-top: 40px;
+            cursor: crosshair;
+        }
+        #content2{
+            width: 400px;
+            height: 400px;
+            margin:0 auto;
+            border:3px solid whitesmoke;
+            margin-top: 40px;
+        }
+    .title{
+  width: 70%;
+  text-align: left;
+  margin: auto;
+}
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  color: whitesmoke;
+  margin-left: 0px;
+  font-size: 40px;
+}
+h2{
+  font-family: Arial, Helvetica, sans-serif;
+  color:whitesmoke;
+  font-size: 20px;
+  text-align: center;
+  align-self: center;
+}
+h3{
+  font-family: Arial, Helvetica, sans-serif;
+  color:whitesmoke;
+  font-size: 30px;
+}
+p{
+  font-family: Arial, Helvetica, sans-serif;
+  color:whitesmoke;
+}
+.background_about_us{
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  width: 70%;
+  margin: auto;
+  height: auto;
+  text-align: left;
+  align-self: center;
+  border-style: solid;
+  border-color: aliceblue;
+}
+.mid{
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  width: 70%;
+  margin: auto;
+  align-content: center;
+  border-style: solid;
+  border-color: aliceblue;
+  align-self: center;
+  vertical-align: middle;
+}
+.hover{
+
+  width: 100%;
+  margin: auto;
+  justify-content: left;
+  display: flex;
+}
+.hover1{
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+  width: 16.66%;
+  align-content: center;
+  border-style: solid;
+  border-color: aliceblue;
+  vertical-align: middle;
+}
+.inside1{
+  align-self: center;
+  width: 100%;
+  height: 120px;
+  justify-content: center;
+  display: flex;
+  justify-items: center;
+  align-items: center; /*most Important*/
+}
+a:link, a:visited {
+  font-family: Arial, Helvetica, sans-serif;
+  color:whitesmoke;
+  font-size: 15px;
+  padding: 14px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+select {
+  width: 60%;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+  font-size: 15px;
+}
+input[type=number] {
+  width: 40%;
+  padding: 16px 30px;
+  margin: 10px;
+  box-sizing: border-box;
+  background-color: whitesmoke;
+  font-size: 15px;
+}
+input[type=button], input[type=submit], input[type=reset] {
+  background-color: whitesmoke;
+  border: 3px solid black;
+  width: auto;
+  padding: 16px 100px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  align-self: center;
+  text-decoration:inherit;
+  font-size: 15px;
+}
+form{
+  width: 100%;
+  text-align: center;
+	justify-content: center
+}
+.inside2{
+  width: 35%;
+  border-style: solid;
+  border-color: aliceblue;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; /*most Important*/
+}
+.inside3{
+  width: 35%;
+  border-style: solid;
+  border-color: aliceblue;
+  height: 50px;
+}
+label{
+  font-family: Arial, Helvetica, sans-serif;
+  color: whitesmoke;
+  margin-left: 20px;
+  text-align: center;
+  align-self: center;
+}
+    </style>
+</head>
+
+<body>
+    <form method="POST" action="/send">
+    
+
+
+
+        <div class="title">
+            <h1 >HANDWRITTEN ALPHABET DETECTION</h1>
+        </div>
+        <div class="mid">
+          <div class="inside1" style="justify-content: left; height: 70px;">
+            <div class="inside2" >
+              <h2>{{score}}</h2>
+            </div>
+            <div class="inside2" style="margin-left:600px ;">
+              <h2>{{best_score}}</h2>
+            </div>
+        </div>
+        <div class="inside1" style="height: 30px;">
+          <div class="inside3">
+            <h2 id="word" name="word"></h2>
+          </div>
+        </div>
+            <div id="content" >
+                <canvas id="myCanvas"></canvas>
+            </div>
+
+            <input type="hidden" id="imageconverted" name="imageconverted" value="">
+            <input type="hidden" id="word_to_detect" name="word_to_detect" value="">
+
+
+
+            <div class="inside1">
+                <input onclick="fn1()" type="button" id="clear" name="clear" value="CLEAR">
+                <input onclick="fn2()" type="submit" id="submit" name="submit" value="DETECT">
+          </div>
+
+          <div class="inside1">
+            <div class="inside3">
+              <h2>{{output}}</h2>
+            </div>
+          </div>
+        </div>
+</form>
+    <script type="text/javascript">
+    var canvas=document.getElementById("myCanvas");
+    var cntx=canvas.getContext("2d");
+    var panting=document.getElementById("content");
+    var pantingstyle=getComputedStyle(panting);
+    canvas.height=parseInt(pantingstyle.getPropertyValue("height"));
+    canvas.width=parseInt(pantingstyle.getPropertyValue("width"));
+    var imageconverted=document.getElementById("imageconverted");
+    var word_to_detect=document.getElementById('word_to_detect');
+
+    var mouse={x:0,y:0};
+
+    a_z = [0,1,2,3,4,5,6,7,8,9];
+
+
+    canvas.addEventListener('mousemove',function(e){
+        mouse.x=e.pageX-this.offsetLeft;
+        mouse.y=e.pageY-this.offsetTop;
+    },false);
+
+    cntx.lineWidth=60;
+    cntx.lineJoin='round';
+    cntx.lineCap='round';
+    cntx.strokeStyle='white';
+
+    //Set the first word
+
+      word=random_in_arr(a_z);
+      document.getElementById('word').innerHTML="Let's draw the number: "+ word;
+      word_to_detect.value=word;
+
+    //Set the background to black at the begining
+    {
+        cntx.fillStyle='black';
+        cntx.fillRect(0,0,canvas.height,canvas.width);
+        imageconverted.src=canvas.toDataURL();
+    }
+
+    canvas.addEventListener('mousedown',function(e){
+        cntx.beginPath();
+        cntx.moveTo(mouse.x,mouse.y);
+        canvas.addEventListener('mousemove',onPaint,false);
+    },false);
+
+    canvas.addEventListener('mouseup',function(){
+        canvas.removeEventListener('mousemove',onPaint,false);
+    },false);
+
+    var onPaint=function(){
+        cntx.lineTo(mouse.x,mouse.y);
+        cntx.stroke();
+    }
+
+    function random_in_arr(arr)
+    {
+      var l=arr.length;
+      var index=Math.random()*l;
+      index=Math.floor(index);
+      return arr[index];
+    }
+
+    function fn1()
+    {
+        cntx.save();
+        cntx.fillStyle='black';
+        cntx.fillRect(0,0,canvas.height,canvas.width);
+        cntx.restore();
+        imageconverted.src=canvas.toDataURL();
+        //
+
+    }
+    function fn2()
+    {
+
+        const URL = canvas.toDataURL();
+        imageconverted.value=URL;
+
+        document.getElementById('word').innerHTML="Let's draw the number: "+ word;
+        word_to_detect.value=word;
+        word=random_in_arr(a_z);
+    }
+
+    </script>
+</body>
+
+</html>
